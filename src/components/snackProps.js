@@ -1,7 +1,4 @@
-// import successIcon from './../check.svg';
-// import errorIcon from './../error.svg';
-// import infoIcon from './../info.svg';
-// import warningIcon from './../warning.svg';
+
 
 export const TOAST_PROPERTIES = [  
   {
@@ -11,7 +8,6 @@ export const TOAST_PROPERTIES = [
     description: 'This is an info toast component',
     fontColor: '',
     backgroundColor: '',
-    // icon: infoIcon
   },
   {
     id: Math.floor((Math.random() * 101) + 1),
@@ -19,7 +15,6 @@ export const TOAST_PROPERTIES = [
     description: 'This is a success toast component',
     fontColor: 'black',
     backgroundColor: '#90EE90',
-    // icon: successIcon
   },
   {
     id: Math.floor((Math.random() * 101) + 1),
@@ -27,7 +22,6 @@ export const TOAST_PROPERTIES = [
     description: 'This is an error toast component',
     fontColor: 'white',
     backgroundColor: '#d9534f',
-    // icon: errorIcon
   },
   {
     id: Math.floor((Math.random() * 101) + 1),
@@ -35,7 +29,6 @@ export const TOAST_PROPERTIES = [
     description: 'This is a warning toast component',
     fontColor: 'black',
     backgroundColor: '#f0ad4e',
-    // icon: warningIcon
   }
 ];
 

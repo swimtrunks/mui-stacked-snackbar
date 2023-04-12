@@ -4,69 +4,13 @@ import Snackbars from "../src/components/Snackbar";
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel'; 
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import {darkTheme , SnackControls, Buttons, StyledHeader } from '../src/components/style.js'
 import {
   BUTTON_PROPS,
   TOAST_PROPERTIES,
 } from "../src/components/snackProps.js";
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-});
-const SnackControls = styled("div")(
-  () => css`
-  font-family: 'DM Sans', sans-serif;
-  font-size: 3rem;
-  input {
-    font-size: 1rem;
-    border-radius: .5rem;
-    padding: 1rem;
-    margin-right: 1rem;
-  }
-  `
-);
-const Buttons = styled("div")(
-  ()=>css`
-  button{
-    cursor: pointer;
-    padding: 1rem;
-    margin-right: .5rem;
-    border-radius: .5rem;
-  }
-  `
-)
-
-const bounceAnimation = keyframes`
-0% {
-  opacity: 0;
-  transform: translateY(-2000px);
-}
-60% {
-  opacity: 1;
-  transform: translateY(30px);
-}
-80% {
-  transform: translateY(-1px);
-}
-100% {
-  transform: translateY(0);
-}
-`
-
-const StyledHeader = styled('div')(
-  ()=>css`
-  line-height: 2.75rem;
-  .stacked{
-    position:absolute;
-    color: red;
-    animation: ${bounceAnimation} 700ms forwards;
-
-  }
-  
-  `
-)
 
 const App = () => {
   const [list, setList]: any = useState([]);
@@ -106,9 +50,17 @@ const App = () => {
             <div className="stacked">stacked</div> <br />
             snackbars 🍟🍟
           </StyledHeader>
-          <p className="description">
-            For this project I leaned heavily on the way that Apple does their notification stack. So in order to expand them you must click on the stack itself but one thing that I incorprated that Apple did not is when you hover over the stack they spread a bit to invite the user to interact and click on them to expand the list. I chose to have the animation fade in from the top after the stack is expanded as I was trying to solve quickly for when the user puts this stack in a corner of the viewport and didnt want the stack to fall off screen when expanded. Also do deal with the issue of the stack not getting to long even when collapsed i just tucked all the snacks after 4 behind the last card. 
-          </p>
+          <section className="description">
+            <h3>What is this:</h3> For starters, this is a Snackbars component made to display multiple Snackbar components on screen. I had a lot of fun with messing around with this. I took some time to read into the MUI docs and found some other implementations for similar snackbar components. 
+            <br />
+            <h3>Findings:</h3>
+            I know that notistack is a viable option here but I figured you would want me to actually try without the library (I also see you all have them in your docs!) and there is a new expirmental api that you all are working on for styled snackbars that I came across but this is my crack at a simple version of it. 
+            <br />
+            <h3>Rambling about the process:</h3>
+            I also wanted to include a little voice memo of me talking through my process more in depth as to not take up too much space here. I will also include more in the README. Thank you for taking a look at this and I hope you enjoy it! <br />
+
+            -Malcolm
+          </section>
           <br />
 
           <input
@@ -148,9 +100,9 @@ const App = () => {
           {BUTTON_PROPS.map(
             (e: {
               backgroundColor: string;
-              id: Key | null | undefined;
-              label: any;
-              type: any;
+              id: Key | number;
+              label: string;
+              type: string;
             }) => (
               <button
                 key={e.id}
