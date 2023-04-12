@@ -10,7 +10,7 @@ export const TOAST_PROPERTIES = [
     title: 'Info',
     description: 'This is an info toast component',
     fontColor: '',
-    backgroundColor: '#F0F7FF',
+    backgroundColor: '',
     // icon: infoIcon
   },
   {
