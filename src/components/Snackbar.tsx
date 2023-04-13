@@ -10,7 +10,7 @@ import ErrorIcon from "@mui/icons-material/Error";
 import CheckCircleTwoToneIcon from "@mui/icons-material/CheckCircleTwoTone";
 import InfoTwoToneIcon from "@mui/icons-material/InfoTwoTone";
 import CloseIcon from '@mui/icons-material/Close';
-import {SnackbarContainer, ShowLessButton, StyledSnackbar, DeleteButton, SnackbarText, } from './style.js'
+import {SnackbarContainer, ShowLessButton, StyledSnackbar, DeleteButton, SnackbarText } from './style.js'
 
 
 
@@ -18,7 +18,7 @@ export default function Snackbars(props: any) {
   const {
     snackList,
     checkValue,
-    autoDelete,
+    autoHide,
     autoHideDuration,
     closeRef,
     openProp,
@@ -52,7 +52,7 @@ export default function Snackbars(props: any) {
   useEffect(() => {
     if (!checkValue && !snacksActive) {
       const interval = setInterval(() => {
-        if (autoDelete && snackList.length && list.length) {
+        if (autoHide && snackList.length && list.length) {
           deleteSnack(snackList[0].id);
         }
       }, autoHideDuration);
@@ -62,7 +62,7 @@ export default function Snackbars(props: any) {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [snacksActive, snackList, autoDelete, autoHideDuration, list]);
+  }, [snacksActive, snackList, autoHide, autoHideDuration, list]);
 
   const deleteSnack = (id: any): any => {
     snackList.length <= 1 ? setSnacksView("closed") : null;

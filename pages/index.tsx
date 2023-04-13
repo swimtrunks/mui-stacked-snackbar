@@ -122,7 +122,7 @@ const App = () => {
         theme={darkTheme}
         snackbarMax={snackbarQuanity}
         openProp={isOpen}
-        autoDelete={checkValue}
+        autoHide={checkValue}
         autoHideDuration={autoHideDuration}
       />
     </ThemeProvider>
