@@ -1,32 +1,32 @@
 
 
-export const TOAST_PROPERTIES = [  
+export const SNACK_PROPERTIES = [  
   {
     //this will use default styling to represent a base snackbar that will react to light and dark themes
     id: Math.floor((Math.random() * 101) + 1),
     title: 'Info',
-    description: 'This is an info toast component',
+    description: 'This is the default styling and is compatiable with light and dark modes. It will display common notifcations ',
     fontColor: '',
     backgroundColor: '',
   },
   {
     id: Math.floor((Math.random() * 101) + 1),
     title: 'Success',
-    description: 'This is a success toast component',
+    description: 'This is a success snackbar component',
     fontColor: 'black',
     backgroundColor: '#90EE90',
   },
   {
     id: Math.floor((Math.random() * 101) + 1),
-    title: 'Danger',
-    description: 'This is an error toast component',
+    title: 'Error',
+    description: 'This is an error snackbar component',
     fontColor: 'white',
     backgroundColor: '#d9534f',
   },
   {
     id: Math.floor((Math.random() * 101) + 1),
     title: 'Warning',
-    description: 'This is a warning toast component',
+    description: 'This is a warning snackbar component',
     fontColor: 'black',
     backgroundColor: '#f0ad4e',
   }
@@ -48,9 +48,9 @@ export const BUTTON_PROPS = [
   },
   {
     id: 3,
-    type: 'danger',
+    type: 'error',
     backgroundColor: '#d9534f',
-    label: 'Danger'
+    label: 'Error'
   },
 
   {

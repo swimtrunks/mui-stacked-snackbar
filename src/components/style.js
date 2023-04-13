@@ -58,21 +58,6 @@ const expand = keyframes`
       top: -20px;
     }
   `;
-//   const hide = keyframes`
-//     0%{
-//       margin-top: 0;
-//     }
-//     30%{
-//       opacity: 1;
-//     }
-//     60%{
-//     }
-//     80%{
-//     }
-//     100%{
-//       margin-top: -50%;
-//     }
-//   `;
 
 export const darkTheme = createTheme({
     palette: {
@@ -82,8 +67,13 @@ export const darkTheme = createTheme({
 
 export const SnackControls = styled("div")(
     () => css`
-    font-family: 'DM Sans', sans-serif;
-    font-size: 3rem;
+
+    justify-content: center;
+    border-bottom: 1px solid grey;
+    padding-bottom: 1rem;
+    display: flex;
+    width: 37rem;
+    flex-direction: column;
     input {
       font-size: 1rem;
       border-radius: .5rem;
@@ -105,6 +95,7 @@ export const Buttons = styled("div")(
 
 export const StyledHeader = styled('div')(
     () => css`
+      font-size: 3rem;
       line-height: 2.75rem;
       .stacked{
         position:absolute;
@@ -223,7 +214,7 @@ export const StyledSnackbar = styled(SnackbarUnstyled)(
 );
 export const SnackbarText = styled("div")(
     () => css`
-          width: 100%;
+          width: 80%;
           .snack-title {
               font-weight: 700;
               font-size: 16px;

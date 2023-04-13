@@ -1,83 +1,72 @@
 import { Key, useRef, useState } from "react";
-import { styled, keyframes, css } from "@mui/system";
 import Snackbars from "../src/components/Snackbar";
-import Checkbox from '@mui/material/Checkbox';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel'; 
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import {darkTheme , SnackControls, Buttons, StyledHeader } from '../src/components/style.js'
+import Checkbox from "@mui/material/Checkbox";
+import FormGroup from "@mui/material/FormGroup";
+import { TextField, Link } from "@mui/material";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import { ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import {
+  darkTheme,
+  SnackControls,
+  Buttons,
+  StyledHeader,
+} from "../src/components/style.js";
 import {
   BUTTON_PROPS,
-  TOAST_PROPERTIES,
+  SNACK_PROPERTIES,
 } from "../src/components/snackProps.js";
 
 const App = () => {
   const [list, setList]: any = useState([]);
-  const [position, setPosition] = useState("Select Position");
-  let [checkValue, setCheckValue] = useState(true);
+  const [checkValue, setCheckValue] = useState(false);
   const [autoHideDuration, setAutoHideDuration] = useState(2000);
-  const [snackbarQuanity, setSnackbarQuanity] = useState(4);
+  const [snackbarQuanity, setSnackbarQuanity] = useState(2);
   const [isOpen, setIsOpen] = useState(true);
-  const [theme, setTheme] = useState('light');
-  const closeRef = useRef(null)
-
+  const closeRef = useRef(null);
 
   const addSnack = (type: any) => {
     if (list.length >= snackbarQuanity) {
       return;
     }
-    const toastProperties = TOAST_PROPERTIES.find(
-      (toast: { title: string }) => toast.title.toLowerCase() === type
+    const snackProperties = SNACK_PROPERTIES.find(
+      (snack: { title: string }) => snack.title.toLowerCase() === type
     );
-    setList([...list, toastProperties]);
+    setList([...list, snackProperties]);
     setIsOpen(true);
   };
 
-  //fix this!
   const onCheckBoxChange = () => {
-    checkValue = !checkValue;
-    setCheckValue(checkValue);
+    checkValue ? setCheckValue(false) : setCheckValue(true);
     setList([]);
-  }
-  const onThemeChange = () =>{}
+  };
+
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <div className="app">
+        <StyledHeader>
+          <div className="stacked">stacked</div> <br />
+          snackbars 🍟🍟
+        </StyledHeader>
         <SnackControls>
-          <StyledHeader>
-            <div className="stacked">stacked</div> <br />
-            snackbars 🍟🍟
-          </StyledHeader>
-          <section className="description">
-            <h3>What is this:</h3> For starters, this is a Snackbars component made to display multiple Snackbar components on screen. I had a lot of fun with messing around with this. I took some time to read into the MUI docs and found some other implementations for similar snackbar components. 
-            <br />
-            <h3>Findings:</h3>
-            I know that notistack is a viable option here but I figured you would want me to actually try without the library (I also see you all have them in your docs!) and there is a new expirmental api that you all are working on for styled snackbars that I came across but this is my crack at a simple version of it. 
-            <br />
-            <h3>Rambling about the process:</h3>
-            I also wanted to include a little voice memo of me talking through my process more in depth as to not take up too much space here. I will also include more in the README. Thank you for taking a look at this and I hope you enjoy it! <br />
-
-            -Malcolm
-          </section>
-          <br />
-
-          <input
+          <h3>🍪 snackbar controls:</h3>
+          <TextField
+            label="auto-hide timer"
             type="number"
             name="dismiss"
             placeholder="2000"
-            min={2000}
-            max={10000}
-            step={500}
+            inputProps={{ min: 2000 }}
             autoComplete="false"
             onChange={(e) => setAutoHideDuration(parseInt(e.target.value, 10))}
           />
-          <input
+          <TextField
+            margin="normal"
+            label="snack quanity"
             type="number"
             name="quanity"
-            placeholder="4"
-            max={8}
+            placeholder="2"
+            inputProps={{ min: 2, max: 5 }}
             autoComplete="false"
             onChange={(e) => setSnackbarQuanity(parseInt(e.target.value, 10))}
           />
@@ -88,41 +77,51 @@ const App = () => {
               control={<Checkbox onChange={onCheckBoxChange} />}
               label={`snack auto-hide (current setting: ${checkValue})`}
             />
-            <FormControlLabel
-              disabled
-              control={<Checkbox onChange={onThemeChange}/>}
-              label = {`${theme} Mode!`}
-            />
           </FormGroup>
+          <h3>🍿 add a snackbar: </h3>
+          <Buttons>
+            {BUTTON_PROPS.map(
+              (e: {
+                backgroundColor: string;
+                id: Key | number;
+                label: string;
+                type: string;
+              }) => (
+                <button 
+                  key={e.id}
+                  style={{ backgroundColor: e.backgroundColor }}
+                  onClick={() => addSnack(e.type)}
+                >
+                  {e.label}
+                </button>
+              )
+            )}
+          </Buttons>
         </SnackControls>
-        <br />
-        <Buttons>
-          {BUTTON_PROPS.map(
-            (e: {
-              backgroundColor: string;
-              id: Key | number;
-              label: string;
-              type: string;
-            }) => (
-              <button
-                key={e.id}
-                style={{ backgroundColor: e.backgroundColor }}
-                onClick={() => addSnack(e.type)}
-              >
-                {e.label}
-              </button>
-            )
-          )}
-        </Buttons>
+        <section className="description">
+          <h3>What This Is:</h3>
+          <p>
+            This is a Snackbar(s) component made to display multiple Snackbar
+            components on screen utilizing the {" "}
+            <Link href="https://mui.com/base/react-snackbar/" target="_blank" rel="noreferrer" underline="always">
+              MUI SnackbarUnstyled Component as a base
+            </Link>
+            . Wrapping it in a provider of sorts, each time a specified event is
+            triggered (in this case a button press) a specific snackbar is
+            displayed. The component also takes in some control props in order
+            to customize the way it behaves such as an autohide timer and the
+            amount of snackbars that can be displayed at one time.
+          </p>
+          <p>More info included in the README</p>
+        </section>
       </div>
 
       <Snackbars
         snackList={list}
-        closeRef = {closeRef}
-        theme = {darkTheme}
+        closeRef={closeRef}
+        theme={darkTheme}
         snackbarMax={snackbarQuanity}
         openProp={isOpen}
-        position={position}
         autoDelete={checkValue}
         autoHideDuration={autoHideDuration}
       />

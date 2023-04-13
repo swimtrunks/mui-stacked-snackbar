@@ -65,7 +65,6 @@ export default function Snackbars(props: any) {
   }, [snacksActive, snackList, autoDelete, autoHideDuration, list]);
 
   const deleteSnack = (id: any): any => {
-    // closeRef.current.classList.add('fadeOut');
     snackList.length <= 1 ? setSnacksView("closed") : null;
     const listItemIndex = list.findIndex((e: { id: any }) => e.id === id);
     const snackListItem = snackList.findIndex((e: { id: any }) => e.id === id);
@@ -115,6 +114,9 @@ export default function Snackbars(props: any) {
                 i: Key | null | undefined
               ) => (
                 <StyledSnackbar
+                  tabIndex={0}
+                  onFocus={expandSnacks}
+                  onBlur={closeSnacks}
                   theme={theme}
                   style={{
                     backgroundColor: snack.backgroundColor,
@@ -127,6 +129,7 @@ export default function Snackbars(props: any) {
                 >
                   <DeleteButton
                     ref={closeRef}
+                    tabIndex={0}
                     onClick={() => deleteSnack(snack.id)}
                     style={{
                       color: "black",
@@ -135,8 +138,7 @@ export default function Snackbars(props: any) {
                     <CloseIcon fontSize="small" />
                   </DeleteButton>
                   <div style={{ padding: ".5rem 1rem 0rem 1rem" }}>
-                    {/* another way to implement variants with conditionals*/}
-                    {snack.title === "Danger" && <ErrorIcon />}
+                    {snack.title === "Error" && <ErrorIcon />}
                     {snack.title === "Success" && <CheckCircleTwoToneIcon />}
                     {snack.title === "Warning" && <WarningTwoToneIcon />}
                     {snack.title === "Info" && <InfoTwoToneIcon />}
