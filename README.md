@@ -1,4 +1,4 @@
-# Stacked SnackBars - Malcolm Peterson
+# Stacked SnackBars 
 ![screenshot of application entitled 'stacked snackbars'. with an assortment of fields and buttons that serve as controls on the left and the right has 3 containers stacked on top of one another descending](public/stackedSnackbars.png)
 ## Objective
 
